@@ -1,0 +1,2616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivy Compass | Find Your Ideal Ivy League School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ivy-green: #0D5D56;
+            --ivy-gold: #EBB434;
+            --ivy-cream: #F8F4E3;
+            --ivy-brick: #9E2B25;
+            --ivy-navy: #14213D;
+            --ivy-gradient: linear-gradient(135deg, var(--ivy-green), #083f3a);
+            --font-primary: 'Playfair Display', Georgia, serif;
+            --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.09), 0 10px 10px rgba(0, 0, 0, 0.04);
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-secondary);
+        }
+        
+        body {
+            background-color: var(--ivy-cream);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Header Styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--ivy-cream);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 2.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .logo-text {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--ivy-green);
+        }
+        
+        .logo-text span {
+            color: var(--ivy-gold);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--ivy-navy);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--ivy-gold);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--ivy-green);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--ivy-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-medium);
+            border: 2px solid var(--ivy-green);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: transparent;
+            border-radius: 50px;
+            transition: all var(--transition-medium);
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            color: var(--ivy-green);
+        }
+        
+        .cta-button:hover::before {
+            width: 100%;
+            background-color: white;
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        #mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--ivy-navy);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: calc(100vh - 5rem);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=2070') no-repeat center center;
+            background-size: cover;
+            filter: brightness(0.3);
+            z-index: -1;
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        
+        @keyframes heroZoom {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .hero-content {
+            padding: 0 10%;
+            color: white;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-family: var(--font-primary);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+        
+        .hero h1 span {
+            color: var(--ivy-gold);
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-indicator i {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 10%;
+            background-color: white;
+        }
+        
+        .section-heading {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            color: var(--ivy-navy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .section-subheading {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 3rem;
+            left: 3rem;
+            right: 3rem;
+            height: 2px;
+            background-color: #eee;
+            z-index: 0;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 4rem;
+            height: 4rem;
+            background-color: var(--ivy-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--ivy-navy);
+        }
+        
+        .step p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 250px;
+        }
+        
+        /* Quiz Section */
+        .quiz-container {
+            padding: 4rem 10%;
+            background-color: var(--ivy-cream);
+        }
+        
+        .quiz-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            transform: translateY(0);
+            transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+        }
+        
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+        
+        .quiz-header {
+            background: var(--ivy-gradient);
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.03),
+                rgba(255, 255, 255, 0.03) 10px,
+                rgba(255, 255, 255, 0.06) 10px,
+                rgba(255, 255, 255, 0.06) 20px
+            );
+            animation: patternMove 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes patternMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+        
+        .quiz-header > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quiz-header h2 {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--ivy-gold);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .quiz-body {
+            padding: 2rem;
+        }
+        
+        .question-container {
+            display: none;
+        }
+        
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--ivy-navy);
+        }
+        
+        .question span {
+            color: var(--ivy-green);
+            font-family: var(--font-primary);
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option {
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all var(--transition-medium);
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            transform: translateY(0);
+        }
+        
+        .option:hover {
+            border-color: var(--ivy-green);
+            background-color: rgba(13, 93, 86, 0.05);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .option.selected {
+            border-color: var(--ivy-green);
+            background-color: rgba(13, 93, 86, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .option::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background-color: transparent;
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .option:active {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .option input {
+            margin-right: 1rem;
+        }
+        
+        .option-text {
+            font-size: 1rem;
+        }
+        
+        .slider-question {
+            margin-bottom: 2rem;
+        }
+        
+        .slider-container {
+            margin: 2rem 0;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #eee;
+            outline: none;
+            margin: 1rem 0;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--ivy-green);
+            cursor: pointer;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .back-btn, .next-btn, .submit-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn {
+            background-color: transparent;
+            color: var(--ivy-navy);
+            border: 2px solid #eee;
+        }
+        
+        .back-btn:hover {
+            border-color: var(--ivy-navy);
+        }
+        
+        .next-btn, .submit-btn {
+            background-color: var(--ivy-green);
+            color: white;
+            border: 2px solid var(--ivy-green);
+        }
+        
+        .next-btn:hover, .submit-btn:hover {
+            background-color: transparent;
+            color: var(--ivy-green);
+        }
+        
+        .submit-btn {
+            display: none;
+        }
+        
+        /* Results Section */
+        .results-container {
+            display: none;
+            padding: 4rem 10%;
+            background-color: white;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .results-header h2 {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            color: var(--ivy-navy);
+            margin-bottom: 1rem;
+        }
+        
+        .results-header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .results-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .match-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+        }
+        
+        .match-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .match-header {
+            background: var(--ivy-gradient);
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .match-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 70%);
+            transform: rotate(25deg);
+            animation: shineEffect 6s infinite;
+        }
+        
+        @keyframes shineEffect {
+            0% { transform: translateX(-100%) rotate(25deg); }
+            100% { transform: translateX(200%) rotate(25deg); }
+        }
+        
+        .match-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .school-logo {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .school-logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .school-name {
+            font-family: var(--font-primary);
+            font-size: 1.75rem;
+        }
+        
+        .match-percentage {
+            background-color: var(--ivy-gold);
+            color: var(--ivy-navy);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .match-percentage:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(235, 180, 52, 0.4);
+        }
+        
+        .match-percentage.shimmer::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmerEffect 2s infinite;
+            transform: rotate(30deg);
+        }
+        
+        @keyframes shimmerEffect {
+            0% {
+                transform: translateX(-100%) rotate(30deg);
+            }
+            100% {
+                transform: translateX(100%) rotate(30deg);
+            }
+        }
+        
+        .match-body {
+            padding: 2rem;
+        }
+        
+        .match-section {
+            margin-bottom: 2rem;
+        }
+        
+        .match-section h3 {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            color: var(--ivy-navy);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .match-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+        
+        .match-highlights {
+            background-color: rgba(13, 93, 86, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .match-highlights h4 {
+            font-size: 1.2rem;
+            color: var(--ivy-green);
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-icon {
+            color: var(--ivy-gold);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        
+        .highlight-content {
+            flex: 1;
+        }
+        
+        .highlight-content h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--ivy-navy);
+        }
+        
+        .highlight-content p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .match-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .fact-item {
+            text-align: center;
+            padding: 1.25rem;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+        }
+        
+        .fact-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ivy-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .fact-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .match-programs {
+            margin-top: 1.5rem;
+        }
+        
+        .program-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .program-item:last-child {
+            border-bottom: none;
+        }
+        
+        .program-item h5 {
+            font-size: 1.1rem;
+            color: var(--ivy-navy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .program-item p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .match-footer {
+            background-color: #f8f8f8;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .retake-quiz {
+            background-color: transparent;
+            color: var(--ivy-navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--ivy-navy);
+        }
+        
+        .retake-quiz:hover {
+            background-color: var(--ivy-navy);
+            color: white;
+        }
+        
+        .visit-website {
+            background-color: var(--ivy-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--ivy-green);
+        }
+        
+        .visit-website:hover {
+            background-color: transparent;
+            color: var(--ivy-green);
+        }
+
+        /* Simple Footer */
+        footer {
+            background-color: var(--ivy-navy);
+            padding: 2rem 10%;
+            color: white;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .step {
+                margin-bottom: 2rem;
+            }
+            
+            .match-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .match-title {
+                flex-direction: column;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 1rem 5%;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--ivy-cream);
+                flex-direction: column;
+                padding: 1rem 5%;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            #mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content {
+                padding: 0 5%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .how-it-works, .quiz-container, .results-container {
+                padding: 3rem 5%;
+            }
+            
+            .match-facts {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .match-footer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section-heading {
+                font-size: 2rem;
+            }
+            
+            .quiz-header h2, .results-header h2 {
+                font-size: 1.75rem;
+            }
+            
+            .match-facts {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Interactive Elements & Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+            transition-delay: 0.1s;
+        }
+        
+        .fade-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
+        
+        .slide-in-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
+        
+        .slide-in-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
+        
+        .scale-in.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pop-stagger {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity var(--transition-medium), transform var(--transition-medium);
+        }
+        
+        .pop-stagger.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 0L68.3 31.5L100 36.8L75 61.5L80.9 93.2L50 78.1L19.1 93.2L25 61.5L0 36.8L31.7 31.5L50 0Z" fill="#0D5D56"/>
+                <path d="M50 15L62.7 36.5L87.5 40.3L68.8 58.7L73.1 83.2L50 71.6L26.9 83.2L31.2 58.7L12.5 40.3L37.3 36.5L50 15Z" fill="#EBB434"/>
+            </svg>
+            <div class="logo-text">Ivy<span>Compass</span></div>
+        </a>
+        
+        <nav>
+            <ul>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#quiz">Take The Quiz</a></li>
+            </ul>
+            <button id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <a href="#quiz" class="cta-button">Find Your Match</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your <span>Perfect</span> Ivy League Match</h1>
+            <p>Beyond rankings and prestige, discover which of the eight Ivy League institutions truly aligns with your learning style, campus preferences, and academic goals.</p>
+            <div class="hero-buttons">
+                <a href="#quiz" class="cta-button">Take the Quiz</a>
+                <a href="#how-it-works" class="secondary-button">Learn More</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <h2 class="section-heading">How Ivy<span>Match</span> Works</h2>
+        <p class="section-subheading">This tool uses research-based insights about each Ivy League school to help you find your ideal academic and cultural fit.</p>
+        
+        <div class="steps">
+            <div class="step fade-in">
+                <div class="step-number">1</div>
+                <h3>Take the Quiz</h3>
+                <p>Answer questions about your learning style, campus preferences, and academic goals.</p>
+            </div>
+            
+            <div class="step fade-in">
+                <div class="step-number">2</div>
+                <h3>Get Matched</h3>
+                <p>Our carefully designed algorithm analyzes your responses to find your best Ivy League fit.</p>
+            </div>
+            
+            <div class="step fade-in">
+                <div class="step-number">3</div>
+                <h3>Explore Your Match</h3>
+                <p>Review detailed insights about why each school is a good fit for your unique preferences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz-container">
+        <h2 class="section-heading">Find Your Ivy League Match</h2>
+        <p class="section-subheading">Answer these questions honestly to discover which Ivy League school aligns best with your preferences.</p>
+        
+        <div class="quiz-card">
+            <div class="quiz-header">
+                <h2>Ivy<span>Match</span> Questionnaire</h2>
+                <p>Your path to finding the right Ivy League school for your unique profile.</p>
+                <div class="progress-container">
+                    <div class="progress-bar" id="quiz-progress"></div>
+                </div>
+            </div>
+            
+            <div class="quiz-body">
+                <!-- Question 1: Learning Style -->
+                <div class="question-container active" data-question="1">
+                    <div class="question">
+                        <span>1.</span> How do you prefer to learn and engage with course material?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="learning_style" value="structured">
+                            <span class="option-text">Through a structured curriculum with clear requirements and guidelines</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="learning_style" value="self_directed">
+                            <span class="option-text">With freedom to design my own educational path and explore diverse subjects</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="learning_style" value="research">
+                            <span class="option-text">By engaging in research and deep investigation of specific topics</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="learning_style" value="hands_on">
+                            <span class="option-text">Through practical, hands-on experiences and real-world applications</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="learning_style" value="discussion">
+                            <span class="option-text">In small discussion-based seminars with close faculty interaction</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn" disabled>Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 2: Campus Setting -->
+                <div class="question-container" data-question="2">
+                    <div class="question">
+                        <span>2.</span> What type of campus environment do you prefer?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="campus_setting" value="urban">
+                            <span class="option-text">Urban setting integrated with a major city</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="campus_setting" value="college_town">
+                            <span class="option-text">Classic college town centered around campus life</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="campus_setting" value="suburban">
+                            <span class="option-text">Suburban area with proximity to urban opportunities</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="campus_setting" value="rural">
+                            <span class="option-text">Rural setting with a strong campus community and natural surroundings</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 3: Academic Focus -->
+                <div class="question-container" data-question="3">
+                    <div class="question">
+                        <span>3.</span> Which academic approach appeals to you most?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="academic_focus" value="liberal_arts">
+                            <span class="option-text">Strong liberal arts foundation across multiple disciplines</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="academic_focus" value="core_curriculum">
+                            <span class="option-text">Core curriculum focusing on great books and fundamental ideas</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="academic_focus" value="open_curriculum">
+                            <span class="option-text">Open curriculum with minimal requirements and maximum flexibility</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="academic_focus" value="preprofessional">
+                            <span class="option-text">Strong pre-professional focus preparing for specific careers</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="academic_focus" value="research_intensive">
+                            <span class="option-text">Research-intensive programs with opportunities for specialized study</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 4: Fields of Interest -->
+                <div class="question-container" data-question="4">
+                    <div class="question">
+                        <span>4.</span> What fields of study are you most interested in? (Select up to 2)
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="humanities">
+                            <span class="option-text">Humanities (Literature, History, Philosophy, Languages)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="social_sciences">
+                            <span class="option-text">Social Sciences (Economics, Political Science, Psychology)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="natural_sciences">
+                            <span class="option-text">Natural Sciences (Biology, Chemistry, Physics)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="engineering">
+                            <span class="option-text">Engineering and Computer Science</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="business">
+                            <span class="option-text">Business, Finance, and Entrepreneurship</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="arts">
+                            <span class="option-text">Arts and Creative Fields (Music, Theater, Media)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="communication">
+                            <span class="option-text">Communication, Journalism and Media Studies</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="field_interest" value="specialized">
+                            <span class="option-text">Specialized Fields (Architecture, Hospitality, Nursing)</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 5: Community Size -->
+                <div class="question-container" data-question="5">
+                    <div class="question">
+                        <span>5.</span> What size academic community do you prefer?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="community_size" value="small">
+                            <span class="option-text">Smaller undergraduate population (4,000-6,000 students)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="community_size" value="medium">
+                            <span class="option-text">Medium-sized undergraduate population (6,000-8,000 students)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="community_size" value="large">
+                            <span class="option-text">Larger undergraduate population (over 8,000 students)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="community_size" value="no_preference">
+                            <span class="option-text">No strong preference on size</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 6: Social Environment -->
+                <div class="question-container" data-question="6">
+                    <div class="question">
+                        <span>6.</span> Which campus social environment appeals to you most?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="social_environment" value="traditional">
+                            <span class="option-text">Traditional collegiate atmosphere with strong school traditions</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="social_environment" value="progressive">
+                            <span class="option-text">Progressive and socially conscious community</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="social_environment" value="residential">
+                            <span class="option-text">Strong residential community with housing-based social structures</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="social_environment" value="diverse">
+                            <span class="option-text">Highly diverse, urban-influenced social scene</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="social_environment" value="outdoors">
+                            <span class="option-text">Outdoors-oriented community with emphasis on nature and activities</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 7: Special Features -->
+                <div class="question-container" data-question="7">
+                    <div class="question">
+                        <span>7.</span> Which special features are most important to you? (Select up to 2)
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="research_opportunities">
+                            <span class="option-text">Extensive undergraduate research opportunities</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="study_abroad">
+                            <span class="option-text">Strong international and study abroad programs</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="independent_work">
+                            <span class="option-text">Emphasis on independent work and thesis projects</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="career_services">
+                            <span class="option-text">Robust career services and industry connections</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="academic_calendar">
+                            <span class="option-text">Distinctive academic calendar (quarter system, D-Plan, etc.)</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="alumni_network">
+                            <span class="option-text">Strong alumni network and mentoring opportunities</span>
+                        </label>
+                        <label class="option">
+                            <input type="checkbox" name="special_features" value="specialized_facilities">
+                            <span class="option-text">Specialized facilities (studios, labs, performance spaces)</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="next-btn">Next</button>
+                    </div>
+                </div>
+                
+                <!-- Question 8: Post-Graduation Goals -->
+                <div class="question-container" data-question="8">
+                    <div class="question">
+                        <span>8.</span> What are your primary post-graduation goals?
+                    </div>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="post_grad_goals" value="graduate_school">
+                            <span class="option-text">Pursue graduate or professional school (law, medicine, PhD, etc.)</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="post_grad_goals" value="career_entry">
+                            <span class="option-text">Enter a specific career field or industry immediately</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="post_grad_goals" value="entrepreneurship">
+                            <span class="option-text">Entrepreneurship or starting my own venture</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="post_grad_goals" value="public_service">
+                            <span class="option-text">Public service, non-profit, or social impact work</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="post_grad_goals" value="undecided">
+                            <span class="option-text">Still exploring options and keeping paths open</span>
+                        </label>
+                    </div>
+                    
+                    <div class="quiz-navigation">
+                        <button class="back-btn">Back</button>
+                        <button class="submit-btn">Find My Match</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-container">
+        <div class="results-header">
+            <h2>Your Ivy League Match</h2>
+            <p>Based on your responses, we've analyzed which Ivy League institution would be the best fit for your unique profile.</p>
+        </div>
+        
+        <div class="results-content">
+            <!-- Primary Match Card -->
+            <div class="match-card fade-in">
+                <div class="match-header">
+                    <div class="match-title">
+                        <div class="school-logo">
+                            <img id="primary-school-logo" src="" alt="School Logo">
+                        </div>
+                        <h3 class="school-name" id="primary-school-name">University Name</h3>
+                    </div>
+                    <div class="match-percentage" id="primary-match-percentage">95% Match</div>
+                </div>
+                
+                <div class="match-body">
+                    <div class="match-section">
+                        <h3>Why This Is Your Top Match</h3>
+                        <p class="match-description" id="primary-match-description">
+                            This is where we'll explain why this particular Ivy League school is your top match based on the preferences you shared in the questionnaire.
+                        </p>
+                        
+                        <div class="match-highlights">
+                            <h4>Key Alignment Points</h4>
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h5 id="highlight-1-title">Learning Style</h5>
+                                    <p id="highlight-1-text">How your preferred learning approach aligns with this school's educational philosophy.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h5 id="highlight-2-title">Campus Environment</h5>
+                                    <p id="highlight-2-text">How this school's setting and atmosphere matches your preferences.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="highlight-item">
+                                <div class="highlight-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="highlight-content">
+                                    <h5 id="highlight-3-title">Academic Strengths</h5>
+                                    <p id="highlight-3-text">How this school excels in your fields of interest.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-section">
+                        <h3>School Profile</h3>
+                        <div class="match-facts">
+                            <div class="fact-item">
+                                <div class="fact-value" id="fact-location">Urban</div>
+                                <div class="fact-label">Location</div>
+                            </div>
+                            
+                            <div class="fact-item">
+                                <div class="fact-value" id="fact-undergrads">6,500</div>
+                                <div class="fact-label">Undergraduates</div>
+                            </div>
+                            
+                            <div class="fact-item">
+                                <div class="fact-value" id="fact-student-faculty">6:1</div>
+                                <div class="fact-label">Student-Faculty Ratio</div>
+                            </div>
+                            
+                            <div class="fact-item">
+                                <div class="fact-value" id="fact-founded">1764</div>
+                                <div class="fact-label">Founded</div>
+                            </div>
+                        </div>
+                        
+                        <div class="match-programs">
+                            <h4>Notable Programs in Your Areas of Interest</h4>
+                            <div class="program-item" id="program-1">
+                                <h5>Program Name</h5>
+                                <p>Description of the program and why it might be a good fit.</p>
+                            </div>
+                            
+                            <div class="program-item" id="program-2">
+                                <h5>Program Name</h5>
+                                <p>Description of the program and why it might be a good fit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-footer">
+                    <a href="#quiz" class="retake-quiz">Retake Quiz</a>
+                    <a href="#" class="visit-website" id="school-website" target="_blank">Visit School Website</a>
+                </div>
+            </div>
+            
+            <!-- Secondary Match Information -->
+            <div class="section-heading" style="font-size: 1.75rem; margin-top: 3rem;">
+                Other Strong Matches
+            </div>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: #555;">
+                While the school above is your strongest match, these Ivy League institutions also align well with aspects of your preferences.
+            </p>
+            
+            <div class="match-card fade-in" style="background-color: #f8f8f8;">
+                <div class="match-header" style="background-color: #555;">
+                    <div class="match-title">
+                        <h3 class="school-name" id="secondary-matches-title">Your Runner-Up Matches</h3>
+                    </div>
+                </div>
+                
+                <div class="match-body" style="padding: 1.5rem;">
+                    <div id="secondary-matches-content">
+                        <!-- This will be filled dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer>
+        <p>IvyCompass is a personal project created to help students find their ideal Ivy League fit.</p>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="mailto:ivycompass@gmail.com">Contact</a>
+        </div>
+        <p>&copy; 2025 IvyCompass. This site is not affiliated with the Ivy League or its member institutions.</p>
+    </footer>
+
+    <script>
+        // Enhanced animation system
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.classList.contains('stagger-children')) {
+                        const children = entry.target.querySelectorAll('.staggered');
+                        children.forEach((child, index) => {
+                            setTimeout(() => {
+                                child.classList.add('active');
+                            }, 150 * index);
+                        });
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        // Apply smooth scroll to all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add hover effect to logos and interactive elements
+        document.querySelectorAll('.logo, .school-logo, .step-number').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05) rotate(2deg)';
+                this.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Mobile Menu Toggle with animation
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.querySelector('nav ul');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            
+            // Animate the menu button
+            mobileMenuBtn.classList.toggle('active');
+            
+            if (mobileMenuBtn.classList.contains('active')) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                mobileMenuBtn.style.transform = 'rotate(90deg)';
+            } else {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileMenuBtn.style.transform = 'rotate(0deg)';
+            }
+        });
+        
+        // Quiz Navigation
+        const questionContainers = document.querySelectorAll('.question-container');
+        const progressBar = document.getElementById('quiz-progress');
+        const nextButtons = document.querySelectorAll('.next-btn');
+        const backButtons = document.querySelectorAll('.back-btn');
+        const submitButton = document.querySelector('.submit-btn');
+        const quizSection = document.getElementById('quiz');
+        const resultsSection = document.getElementById('results');
+        
+        let currentQuestion = 1;
+        const totalQuestions = questionContainers.length;
+        
+        // Update progress bar
+        function updateProgress() {
+            const progressPercentage = ((currentQuestion - 1) / totalQuestions) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+        }
+        
+        // Show a specific question
+        function showQuestion(questionNumber) {
+            questionContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-question="${questionNumber}"]`).classList.add('active');
+            
+            // Update progress
+            updateProgress();
+            
+            // Show/hide submit button on last question
+            if (questionNumber === totalQuestions) {
+                nextButtons.forEach(btn => btn.style.display = 'none');
+                submitButton.style.display = 'block';
+            } else {
+                nextButtons.forEach(btn => btn.style.display = 'block');
+                submitButton.style.display = 'none';
+            }
+            
+            // Disable back button on first question
+            backButtons.forEach(btn => {
+                btn.disabled = questionNumber === 1;
+            });
+        }
+        
+        // Next button event
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            });
+        });
+        
+        // Back button event
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            });
+        });
+            // Add this in the JavaScript section where event listeners are set up
+document.querySelector('.retake-quiz').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Reset quiz state
+    currentQuestion = 1;
+    showQuestion(1);
+    progressBar.style.width = '0%';
+    
+    // Show quiz section
+    quizSection.style.display = 'block';
+    resultsSection.style.display = 'none';
+    
+    // Reset all selected answers
+    document.querySelectorAll('.option input').forEach(input => {
+        input.checked = false;
+        input.closest('.option').classList.remove('selected');
+    });
+
+    // Scroll back to quiz
+    window.scrollTo({
+        top: quizSection.offsetTop - 100,
+        behavior: 'smooth'
+    });
+});
+        // Ivy League School Data
+        const ivySchools = {
+                            harvard: {
+                name: "Harvard University",
+                logo: "https://1000logos.net/wp-content/uploads/2017/02/Harvard-Logo.png",
+                description: "Harvard offers a traditional liberal arts education with excellence across disciplines. Your preference for a structured approach to learning with access to world-class resources aligns perfectly with Harvard's educational philosophy. The Cambridge/Boston location provides an ideal balance of campus community and urban opportunities.",
+                highlights: {
+                    learning: {
+                        title: "Balanced Academic Approach",
+                        text: "Harvard's general education requirements ensure breadth across disciplines while allowing for depth in your chosen field, matching your desire for structured learning with clear guidelines."
+                    },
+                    environment: {
+                        title: "Urban Campus with Community Feel",
+                        text: "Harvard Yard and the House system create a tight-knit community within the urban setting of Cambridge/Boston, giving you both campus life and city access."
+                    },
+                    strength: {
+                        title: "Excellence Across Disciplines",
+                        text: "Harvard's exceptional strength in both humanities and sciences matches your interest in a well-rounded education with opportunities in multiple fields."
+                    }
+                },
+                facts: {
+                    location: "Cambridge, MA",
+                    undergrads: "6,700",
+                    ratio: "7:1",
+                    founded: "1636"
+                },
+                programs: [
+                    {
+                        name: "Economics & Computer Science",
+                        description: "World-renowned programs offering rigorous training from leading scholars, with exceptional resources and opportunities for research."
+                    },
+                    {
+                        name: "Government",
+                        description: "A prestigious program examining political systems and international relations, consistently ranked as one of the best political science departments globally."
+                    }
+                ],
+                website: "https://www.harvard.edu/"
+            },
+            yale: {
+                name: "Yale University",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Yale_University_Shield_1.svg/1200px-Yale_University_Shield_1.svg.png",
+                description: "Yale's residential college system and strong emphasis on undergraduate education creates a supportive, close-knit intellectual community. Your interest in discussion-based learning and humanities aligns perfectly with Yale's strengths in seminars and liberal arts education. The New Haven location offers a classic college town experience centered around campus life.",
+                highlights: {
+                    learning: {
+                        title: "Discussion-Based Learning",
+                        text: "Yale's small seminar classes and emphasis on discussion-based learning perfectly match your preference for interactive engagement with professors and peers."
+                    },
+                    environment: {
+                        title: "Residential College System",
+                        text: "Yale's distinctive residential colleges create small, tight-knit communities within the larger university, providing both intimacy and resources."
+                    },
+                    strength: {
+                        title: "Humanities Excellence",
+                        text: "Yale's renowned strengths in humanities and arts align with your academic interests, with exceptional faculty and resources in these areas."
+                    }
+                },
+                facts: {
+                    location: "New Haven, CT",
+                    undergrads: "6,200",
+                    ratio: "6:1",
+                    founded: "1701"
+                },
+                programs: [
+                    {
+                        name: "Drama and Theater Studies",
+                        description: "Connect with Yale's world-renowned School of Drama, offering unparalleled training through productions, workshops, and specialized courses."
+                    },
+                    {
+                        name: "Music & Political Science",
+                        description: "Exceptional programs with distinguished faculty, comprehensive curricula, and access to Yale's extensive resources and performance opportunities."
+                    }
+                ],
+                website: "https://www.yale.edu/"
+            },
+            princeton: {
+                name: "Princeton University",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Princeton_seal.svg/1200px-Princeton_seal.svg.png",
+                description: "Princeton's focus on undergraduate education and independent work through junior papers and senior theses aligns perfectly with your interest in deep, research-oriented learning. The suburban setting with beautiful campus grounds provides an ideal environment for focused study. The precept system combines lectures with small discussion groups to provide the best of both worlds.",
+                highlights: {
+                    learning: {
+                        title: "Independent Work Emphasis",
+                        text: "Princeton's focus on junior papers and senior thesis work matches your desire for independent research and exploration of specific topics in depth."
+                    },
+                    environment: {
+                        title: "Suburban Campus with Traditions",
+                        text: "Princeton's beautiful suburban campus with strong traditions and eating clubs creates a distinctive residential experience balancing community and academics."
+                    },
+                    strength: {
+                        title: "Undergraduate-Focused Education",
+                        text: "Princeton's unique commitment to undergraduate education ensures world-class professors teach undergraduates directly, with smaller class sizes than many peers."
+                    }
+                },
+                facts: {
+                    location: "Princeton, NJ",
+                    undergrads: "5,300",
+                    ratio: "5:1",
+                    founded: "1746"
+                },
+                programs: [
+                    {
+                        name: "School of Public and International Affairs",
+                        description: "One of the world's premier public policy schools, offering undergraduates exceptional training in international relations and public service."
+                    },
+                    {
+                        name: "Engineering & Humanities",
+                        description: "Innovative programs combining technical excellence with humanistic understanding, featuring Princeton's signature independent work requirements."
+                    }
+                ],
+                website: "https://www.princeton.edu/"
+            },
+            columbia: {
+                name: "Columbia University",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Columbia_University_shield.svg/1200px-Columbia_University_shield.svg.png",
+                description: "Columbia's Core Curriculum provides a structured foundation in Western thought while its New York City location offers unparalleled access to global opportunities. Your interest in a balanced approach with structured learning in a dynamic urban environment makes Columbia an excellent match. The Core's emphasis on small discussion classes around foundational texts develops critical thinking across disciplines.",
+                highlights: {
+                    learning: {
+                        title: "Core Curriculum Structure",
+                        text: "Columbia's distinctive Core Curriculum aligns with your preference for structured learning, providing a shared intellectual foundation through study of pivotal texts and ideas."
+                    },
+                    environment: {
+                        title: "Urban Campus in Manhattan",
+                        text: "Columbia's campus in Morningside Heights offers a self-contained campus experience while providing unmatched access to New York City's resources and opportunities."
+                    },
+                    strength: {
+                        title: "Global and International Focus",
+                        text: "Columbia's strengths in international relations, journalism, and global studies match your interest in these fields, with exceptional faculty and New York connections."
+                    }
+                },
+                facts: {
+                    location: "New York, NY",
+                    undergrads: "8,100",
+                    ratio: "6:1",
+                    founded: "1754"
+                },
+                programs: [
+                    {
+                        name: "Journalism School",
+                        description: "Connect with the world's premier journalism school offering unparalleled opportunities in the media capital of the world."
+                    },
+                    {
+                        name: "Business & Engineering",
+                        description: "Exceptional programs leveraging Columbia's NYC location for internships, networking, and real-world applications of classroom learning."
+                    }
+                ],
+                website: "https://www.columbia.edu/"
+            },
+            brown: {
+                name: "Brown University",
+                logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/31/Brown_University_coat_of_arms.svg/1200px-Brown_University_coat_of_arms.svg.png",
+                description: "Brown's Open Curriculum perfectly matches your preference for self-directed learning with the freedom to explore diverse subjects without core requirements. The progressive, intellectually vibrant campus culture in Providence supports interdisciplinary exploration and student agency. You'll thrive in Brown's collaborative environment that emphasizes learning for its own sake.",
+                highlights: {
+                    learning: {
+                        title: "Open Curriculum Freedom",
+                        text: "Brown's distinctive Open Curriculum aligns perfectly with your preference for designing your own educational path, with no core requirements and maximum flexibility."
+                    },
+                    environment: {
+                        title: "Progressive Campus Culture",
+                        text: "Brown's progressive, intellectually adventurous campus culture matches your desire for an environment that values innovation and challenging convention."
+                    },
+                    strength: {
+                        title: "Interdisciplinary Approach",
+                        text: "Brown excels at supporting interdisciplinary learning and student-designed concentrations, ideal for exploring connections between diverse fields."
+                    }
+                },
+                facts: {
+                    location: "Providence, RI",
+                    undergrads: "7,000",
+                    ratio: "6:1",
+                    founded: "1764"
+                },
+                programs: [
+                    {
+                        name: "Egyptology & Ancient Western Asian Studies",
+                        description: "One of the few dedicated undergraduate programs in the country, with world-class faculty and museum resources."
+                    },
+                    {
+                        name: "Neuroscience & Modern Culture and Media",
+                        description: "Innovative programs reflecting Brown's interdisciplinary approach, with cutting-edge research opportunities and creative exploration."
+                    }
+                ],
+                website: "https://www.brown.edu/"
+            },
+            dartmouth: {
+                name: "Dartmouth College",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Dartmouth_College_shield.svg/1200px-Dartmouth_College_shield.svg.png",
+                description: "Dartmouth's rural New Hampshire setting, tight-knit community, and distinctive quarter system (D-Plan) create an immersive undergraduate experience with flexibility for internships and study abroad. Your preference for close faculty connections and a strong community in a natural setting makes Dartmouth an ideal match. The flexible academic calendar allows for unique off-campus opportunities year-round.",
+                highlights: {
+                    learning: {
+                        title: "D-Plan Calendar Flexibility",
+                        text: "Dartmouth's unique quarter system gives you flexibility to create your own academic schedule, with opportunities for year-round internships and global experiences."
+                    },
+                    environment: {
+                        title: "Rural Setting with Outdoor Focus",
+                        text: "Dartmouth's rural New Hampshire location creates a closely connected campus community with easy access to outdoor activities and natural beauty."
+                    },
+                    strength: {
+                        title: "Undergraduate Teaching Excellence",
+                        text: "Dartmouth's focus on undergraduate education ensures exceptional teaching quality and accessibility to professors, with research opportunities starting early."
+                    }
+                },
+                facts: {
+                    location: "Hanover, NH",
+                    undergrads: "4,400",
+                    ratio: "7:1",
+                    founded: "1769"
+                },
+                programs: [
+                    {
+                        name: "Government & Environmental Studies",
+                        description: "Outstanding programs leveraging Dartmouth's unique setting and D-Plan for field research, internships, and experiential learning."
+                    },
+                    {
+                        name: "Thayer School of Engineering",
+                        description: "One of America's oldest professional schools of engineering, known for its project-based curriculum and liberal arts integration."
+                    }
+                ],
+                website: "https://home.dartmouth.edu/"
+            },
+            penn: {
+                name: "University of Pennsylvania",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/University_of_Pennsylvania_shield_with_banner.svg/1200px-University_of_Pennsylvania_shield_with_banner.svg.png",
+                description: "Penn's integration of theoretical and practical knowledge across disciplines perfectly matches your interest in pre-professional education with liberal arts depth. The urban Philadelphia campus provides both community and city opportunities. Penn's emphasis on interdisciplinary learning through its unique undergraduate schools creates educational flexibility with career preparation.",
+                highlights: {
+                    learning: {
+                        title: "Pre-Professional Excellence",
+                        text: "Penn's unique balance of liberal arts education with pre-professional focus aligns with your career-oriented goals while providing academic breadth."
+                    },
+                    environment: {
+                        title: "Urban Campus in Philadelphia",
+                        text: "Penn's University City campus offers a traditional college experience within Philadelphia's urban setting, providing both community and city opportunities."
+                    },
+                    strength: {
+                        title: "Interdisciplinary Approach",
+                        text: "Penn's emphasis on crossing boundaries between its four undergraduate schools matches your interest in connecting different fields and approaches."
+                    }
+                },
+                facts: {
+                    location: "Philadelphia, PA",
+                    undergrads: "10,000",
+                    ratio: "6:1",
+                    founded: "1740"
+                },
+                programs: [
+                    {
+                        name: "Wharton School of Business",
+                        description: "The world's first collegiate business school, offering unparalleled undergraduate business education, resources, and networking opportunities."
+                    },
+                    {
+                        name: "Nursing & Communication",
+                        description: "Prestigious, highly ranked programs that combine theoretical knowledge with practical experience in Philadelphia's rich professional environment."
+                    }
+                ],
+                website: "https://www.upenn.edu/"
+            },
+            cornell: {
+                name: "Cornell University",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cornell_University_seal.svg/1200px-Cornell_University_seal.svg.png",
+                description: "Cornell's unique structure with seven undergraduate colleges offers specialized education with the resources of an Ivy League research university. Your interest in specific professional fields with hands-on learning makes Cornell an excellent match. The beautiful Ithaca campus combines natural beauty with state-of-the-art facilities across diverse disciplines.",
+                highlights: {
+                    learning: {
+                        title: "Applied Learning Emphasis",
+                        text: "Cornell's focus on practical application of knowledge perfectly matches your preference for hands-on learning and real-world problem solving."
+                    },
+                    environment: {
+                        title: "Expansive Campus in Natural Setting",
+                        text: "Cornell's sprawling campus in Ithaca offers both natural beauty and extensive facilities, creating diverse environments within one university."
+                    },
+                    strength: {
+                        title: "Specialized Colleges Structure",
+                        text: "Cornell's seven undergraduate colleges allow specialized focus within your field while maintaining access to the broader university's resources."
+                    }
+                },
+                facts: {
+                    location: "Ithaca, NY",
+                    undergrads: "15,000",
+                    ratio: "9:1",
+                    founded: "1865"
+                },
+                programs: [
+                    {
+                        name: "Hotel Administration",
+                        description: "The world's premier hospitality management program, offering unmatched industry connections and practical training facilities."
+                    },
+                    {
+                        name: "Agriculture & Life Sciences and Architecture",
+                        description: "Exceptional programs combining hands-on learning with rigorous academics, featuring dedicated facilities and field experience opportunities."
+                    }
+                ],
+                website: "https://www.cornell.edu/"
+            }
+        };
+        
+        // Option Selection
+        const radioOptions = document.querySelectorAll('.option input[type="radio"]');
+        
+        radioOptions.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Remove selected class from all options in the same group
+                const name = this.getAttribute('name');
+                document.querySelectorAll(`.option input[name="${name}"]`).forEach(input => {
+                    input.closest('.option').classList.remove('selected');
+                });
+                
+                // Add selected class to the chosen option
+                this.closest('.option').classList.add('selected');
+            });
+        });
+        
+        // Limit checkbox selections to 2
+        const checkboxGroups = document.querySelectorAll('.question-container');
+        
+        checkboxGroups.forEach(group => {
+            const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checked = group.querySelectorAll('input[type="checkbox"]:checked');
+                    
+                    if (checked.length > 2) {
+                        this.checked = false;
+                        this.closest('.option').classList.remove('selected');
+                    } else if (this.checked) {
+                        this.closest('.option').classList.add('selected');
+                    } else {
+                        this.closest('.option').classList.remove('selected');
+                    }
+                });
+            });
+        });
+        
+        // Submit button event - Core matching logic
+        submitButton.addEventListener('click', () => {
+            // Collect user preferences
+            const learningStyle = document.querySelector('input[name="learning_style"]:checked')?.value || '';
+            const campusSetting = document.querySelector('input[name="campus_setting"]:checked')?.value || '';
+            const academicFocus = document.querySelector('input[name="academic_focus"]:checked')?.value || '';
+            const fieldInterests = Array.from(document.querySelectorAll('input[name="field_interest"]:checked')).map(input => input.value);
+            const communitySize = document.querySelector('input[name="community_size"]:checked')?.value || '';
+            const socialEnvironment = document.querySelector('input[name="social_environment"]:checked')?.value || '';
+            const specialFeatures = Array.from(document.querySelectorAll('input[name="special_features"]:checked')).map(input => input.value);
+            const postGradGoals = document.querySelector('input[name="post_grad_goals"]:checked')?.value || '';
+
+            
+            
+            // Calculate match scores for each school
+            const scores = {
+                harvard: 0,
+                yale: 0,
+                princeton: 0,
+                columbia: 0,
+                brown: 0,
+                dartmouth: 0,
+                penn: 0,
+                cornell: 0
+            };
+            
+            // Learning Style scoring
+            switch(learningStyle) {
+                case 'structured':
+                    scores.harvard += 10;
+                    scores.columbia += 10;
+                    scores.penn += 5;
+                    break;
+                case 'self_directed':
+                    scores.brown += 15;
+                    scores.princeton += 5;
+                    break;
+                case 'research':
+                    scores.princeton += 10;
+                    scores.harvard += 8;
+                    scores.yale += 5;
+                    break;
+                case 'hands_on':
+                    scores.cornell += 10;
+                    scores.penn += 8;
+                    scores.dartmouth += 5;
+                    break;
+                case 'discussion':
+                    scores.yale += 10;
+                    scores.dartmouth += 8;
+                    scores.brown += 5;
+                    break;
+            }
+            
+            // Campus Setting scoring
+            switch(campusSetting) {
+                case 'urban':
+                    scores.columbia += 10;
+                    scores.penn += 10;
+                    scores.harvard += 8;
+                    scores.yale += 5;
+                    break;
+                case 'college_town':
+                    scores.princeton += 10;
+                    scores.yale += 8;
+                    scores.brown += 8;
+                    break;
+                case 'suburban':
+                    scores.princeton += 10;
+                    scores.harvard += 7;
+                    break;
+                case 'rural':
+                    scores.dartmouth += 15;
+                    scores.cornell += 10;
+                    break;
+            }
+            
+            // Academic Focus scoring
+            switch(academicFocus) {
+                case 'liberal_arts':
+                    scores.harvard += 10;
+                    scores.yale += 10;
+                    scores.princeton += 8;
+                    break;
+                case 'core_curriculum':
+                    scores.columbia += 15;
+                    scores.harvard += 5;
+                    break;
+                case 'open_curriculum':
+                    scores.brown += 15;
+                    break;
+                case 'preprofessional':
+                    scores.penn += 15;
+                    scores.cornell += 10;
+                    break;
+                case 'research_intensive':
+                    scores.princeton += 10;
+                    scores.harvard += 8;
+                    scores.cornell += 8;
+                    break;
+            }
+            
+            // Field Interest scoring
+            fieldInterests.forEach(field => {
+                switch(field) {
+                    case 'humanities':
+                        scores.yale += 10;
+                        scores.princeton += 10; // Strong in Humanities
+                        scores.harvard += 8;
+                        scores.columbia += 8;
+                        scores.brown += 5;
+                        break;
+                    case 'social_sciences':
+                        scores.harvard += 10; // Strong in Government, Economics
+                        scores.princeton += 10; // Strong in Public/International Affairs
+                        scores.yale += 8; // Strong in Political Science
+                        scores.dartmouth += 8; // Strong in Government
+                        scores.columbia += 5;
+                        scores.brown += 5;
+                        break;
+                    case 'natural_sciences':
+                        scores.harvard += 8;
+                        scores.princeton += 8;
+                        scores.brown += 8; // Strong in Neuroscience
+                        scores.cornell += 8; // Strong in Agriculture/Life Sciences
+                        scores.columbia += 5;
+                        break;
+                    case 'engineering':
+                        scores.cornell += 10;
+                        scores.princeton += 10; // Updated for Engineering strength
+                        scores.columbia += 10; // Updated for Engineering strength
+                        scores.dartmouth += 8; // Thayer School of Engineering
+                        scores.penn += 5;
+                        break;
+                    case 'business':
+                        scores.penn += 15; // Wharton School
+                        scores.cornell += 10; // Hotel Administration relates to business
+                        scores.columbia += 10; // Updated for Business strength
+                        scores.harvard += 5; // Economics relates to business
+                        break;
+                    case 'arts':
+                        scores.yale += 15; // Strong in Drama/Theater and Music
+                        scores.brown += 10; // Modern Culture and Media
+                        scores.columbia += 8; 
+                        break;
+                    case 'communication':
+                        scores.columbia += 15; // Journalism School
+                        scores.penn += 15; // Communication program
+                        scores.cornell += 5;
+                        break;
+                    case 'specialized':
+                        scores.cornell += 15; // Architecture, Hotel Administration
+                        scores.penn += 12; // Nursing
+                        scores.brown += 10; // Egyptology
+                        scores.dartmouth += 5; // Environmental Studies
+                        break;
+                }
+            });
+            
+            // Community Size scoring
+            switch(communitySize) {
+                case 'small':
+                    scores.dartmouth += 10;
+                    scores.princeton += 8;
+                    scores.yale += 5;
+                    break;
+                case 'medium':
+                    scores.yale += 10;
+                    scores.harvard += 8;
+                    scores.brown += 8;
+                    scores.columbia += 8;
+                    scores.princeton += 5;
+                    break;
+                case 'large':
+                    scores.cornell += 10;
+                    scores.penn += 8;
+                    break;
+                case 'no_preference':
+                    // No adjustments for no preference
+                    break;
+            }
+            
+            // Social Environment scoring
+            switch(socialEnvironment) {
+                case 'traditional':
+                    scores.harvard += 10;
+                    scores.princeton += 10;
+                    scores.yale += 8;
+                    scores.dartmouth += 8;
+                    break;
+                case 'progressive':
+                    scores.brown += 15;
+                    scores.columbia += 8;
+                    break;
+                case 'residential':
+                    scores.yale += 10;
+                    scores.princeton += 8;
+                    scores.harvard += 8;
+                    break;
+                case 'diverse':
+                    scores.columbia += 10;
+                    scores.penn += 8;
+                    scores.cornell += 8;
+                    break;
+                case 'outdoors':
+                    scores.dartmouth += 15;
+                    scores.cornell += 10;
+                    break;
+            }
+            
+            // Special Features scoring
+            specialFeatures.forEach(feature => {
+                switch(feature) {
+                    case 'research_opportunities':
+                        scores.harvard += 10;
+                        scores.princeton += 10;
+                        scores.brown += 8; // Neuroscience research
+                        scores.cornell += 8; // Agriculture & Life Sciences research
+                        scores.yale += 5;
+                        break;
+                    case 'study_abroad':
+                        scores.dartmouth += 10;
+                        scores.brown += 8;
+                        scores.columbia += 8;
+                        scores.yale += 5;
+                        break;
+                    case 'independent_work':
+                        scores.princeton += 15; // Strong emphasis on independent work
+                        scores.brown += 10; // Open Curriculum flexibility
+                        scores.yale += 5;
+                        break;
+                    case 'career_services':
+                        scores.penn += 15; // Strong business/professional connections
+                        scores.cornell += 10; // Hotel Administration industry connections
+                        scores.columbia += 10; // NYC opportunities
+                        break;
+                    case 'academic_calendar':
+                        scores.dartmouth += 15; // D-Plan
+                        scores.cornell += 5;
+                        break;
+                    case 'alumni_network':
+                        scores.harvard += 10;
+                        scores.yale += 8;
+                        scores.princeton += 8;
+                        scores.penn += 5;
+                        break;
+                    case 'specialized_facilities':
+                        scores.yale += 10; // Performance spaces for Drama/Music
+                        scores.cornell += 10; // Architecture facilities
+                        scores.columbia += 8; // Journalism facilities
+                        scores.brown += 5; // Media facilities
+                        break;
+                }
+            });
+            
+            // Post-Graduation Goals scoring
+            switch(postGradGoals) {
+                case 'graduate_school':
+                    scores.harvard += 10;
+                    scores.yale += 10;
+                    scores.princeton += 8;
+                    scores.brown += 5;
+                    break;
+                case 'career_entry':
+                    scores.penn += 10;
+                    scores.cornell += 8;
+                    scores.columbia += 8;
+                    break;
+                case 'entrepreneurship':
+                    scores.penn += 10;
+                    scores.harvard += 8;
+                    scores.cornell += 5;
+                    break;
+                case 'public_service':
+                    scores.harvard += 8;
+                    scores.princeton += 8;
+                    scores.yale += 8;
+                    scores.brown += 5;
+                    break;
+                case 'undecided':
+                    scores.brown += 10;
+                    scores.yale += 5;
+                    scores.harvard += 5;
+                    break;
+            }
+            
+            // Sort schools by score
+            const schoolEntries = Object.entries(scores);
+            schoolEntries.sort((a, b) => b[1] - a[1]);
+            
+            // Get top match and secondary matches
+            const topMatch = schoolEntries[0][0];
+            const secondaryMatches = schoolEntries.slice(1, 4).map(entry => entry[0]);
+            
+            // Calculate match percentages (normalize to make top score = 95%)
+            const maxScore = schoolEntries[0][1];
+            const matchPercentages = {};
+            
+            schoolEntries.forEach(([school, score]) => {
+                matchPercentages[school] = Math.round((score / maxScore) * 95);
+            });
+            
+            // Update primary match display
+            document.getElementById('primary-school-logo').src = ivySchools[topMatch].logo;
+            document.getElementById('primary-school-name').textContent = ivySchools[topMatch].name;
+            document.getElementById('primary-match-percentage').textContent = `${matchPercentages[topMatch]}% Match`;
+            document.getElementById('primary-match-description').textContent = ivySchools[topMatch].description;
+            
+            // Update highlights
+            document.getElementById('highlight-1-title').textContent = ivySchools[topMatch].highlights.learning.title;
+            document.getElementById('highlight-1-text').textContent = ivySchools[topMatch].highlights.learning.text;
+            document.getElementById('highlight-2-title').textContent = ivySchools[topMatch].highlights.environment.title;
+            document.getElementById('highlight-2-text').textContent = ivySchools[topMatch].highlights.environment.text;
+            document.getElementById('highlight-3-title').textContent = ivySchools[topMatch].highlights.strength.title;
+            document.getElementById('highlight-3-text').textContent = ivySchools[topMatch].highlights.strength.text;
+            
+            // Update facts
+            document.getElementById('fact-location').textContent = ivySchools[topMatch].facts.location;
+            document.getElementById('fact-undergrads').textContent = ivySchools[topMatch].facts.undergrads;
+            document.getElementById('fact-student-faculty').textContent = ivySchools[topMatch].facts.ratio;
+            document.getElementById('fact-founded').textContent = ivySchools[topMatch].facts.founded;
+            
+            // Update programs
+            document.getElementById('program-1').innerHTML = `
+                <h5>${ivySchools[topMatch].programs[0].name}</h5>
+                <p>${ivySchools[topMatch].programs[0].description}</p>
+            `;
+            document.getElementById('program-2').innerHTML = `
+                <h5>${ivySchools[topMatch].programs[1].name}</h5>
+                <p>${ivySchools[topMatch].programs[1].description}</p>
+            `;
+            
+            // Update website link
+            document.getElementById('school-website').href = ivySchools[topMatch].website;
+            
+            // Update secondary matches
+            let secondaryMatchesHTML = '';
+            secondaryMatches.forEach(school => {
+                secondaryMatchesHTML += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${ivySchools[school].logo}" alt="${ivySchools[school].name} Logo" style="width: 40px; height: 40px;">
+                            <div>
+                                <h5 style="font-size: 1.2rem; margin-bottom: 0.25rem; color: var(--ivy-navy);">${ivySchools[school].name}</h5>
+                                <p style="font-size: 0.9rem; color: #666;">${ivySchools[school].facts.location}</p>
+                            </div>
+                        </div>
+                        <div style="background-color: #f0f0f0; padding: 0.5rem 1rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; color: var(--ivy-navy);">
+                            ${matchPercentages[school]}% Match
+                        </div>
+                    </div>
+                    <p style="margin-bottom: 2rem; font-size: 0.95rem; color: #555; line-height: 1.6;">
+                        ${school === secondaryMatches[0] ? ivySchools[school].highlights.strength.text : ''}
+                    </p>
+                `;
+            });
+            
+            document.getElementById('secondary-matches-content').innerHTML = secondaryMatchesHTML;
+            
+            // Hide quiz section
+            quizSection.style.display = 'none';
+            
+            // Show results section
+            resultsSection.style.display = 'block';
+            
+            // Scroll to results
+            window.scrollTo({
+                top: resultsSection.offsetTop - 100,
+                behavior: 'smooth'
+            });
+            
+            // Enhanced results reveal animation sequence
+            setTimeout(() => {
+                // Animate main match card with special entrance
+                const mainCard = document.querySelector('.results-content .match-card');
+                mainCard.style.opacity = '0';
+                mainCard.style.transform = 'translateY(40px) scale(0.95)';
+                mainCard.style.transition = 'all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                
+                setTimeout(() => {
+                    mainCard.style.opacity = '1';
+                    mainCard.style.transform = 'translateY(0) scale(1)';
+                    
+                    // Add shimmer effect to match percentage
+                    setTimeout(() => {
+                        document.getElementById('primary-match-percentage').classList.add('shimmer');
+                    }, 500);
+                    
+                    // Staggered animation for highlights
+                    const highlights = document.querySelectorAll('.highlight-item');
+                    highlights.forEach((highlight, index) => {
+                        highlight.style.opacity = '0';
+                        highlight.style.transform = 'translateX(-20px)';
+                        highlight.style.transition = 'all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1)';
+                        
+                        setTimeout(() => {
+                            highlight.style.opacity = '1';
+                            highlight.style.transform = 'translateX(0)';
+                        }, 300 + (index * 150));
+                    });
+                    
+                    // Animate facts with pop effect
+                    const facts = document.querySelectorAll('.fact-item');
+                    facts.forEach((fact, index) => {
+                        fact.style.opacity = '0';
+                        fact.style.transform = 'translateY(20px) scale(0.9)';
+                        fact.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        
+                        setTimeout(() => {
+                            fact.style.opacity = '1';
+                            fact.style.transform = 'translateY(0) scale(1)';
+                        }, 800 + (index * 100));
+                    });
+                    
+                    // Finally reveal secondary matches
+                    setTimeout(() => {
+                        const secondaryMatches = document.querySelectorAll('.results-content .match-card:not(:first-child)');
+                        secondaryMatches.forEach(match => {
+                            match.classList.add('active');
+                            
+                            // Add subtle hover effect
+                            match.addEventListener('mouseenter', () => {
+                                match.style.backgroundColor = '#fafafa';
+                            });
+                            
+                            match.addEventListener('mouseleave', () => {
+                                match.style.backgroundColor = 'white';
+                            });
+                        });
+                    }, 1200);
+                }, 300);
+            }, 300);
+        });
+
+        // Advanced scroll animations and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize all animation classes
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .pop-stagger');
+            
+            animatedElements.forEach(element => {
+                animationObserver.observe(element);
+                
+                // Add subtle hover effects to sections
+                if (element.classList.contains('match-section') || element.classList.contains('step')) {
+                    element.addEventListener('mouseenter', () => {
+                        element.style.transform = 'translateY(-5px)';
+                        element.style.transition = 'transform 0.3s ease';
+                    });
+                    
+                    element.addEventListener('mouseleave', () => {
+                        element.style.transform = 'translateY(0)';
+                    });
+                }
+            });
+            
+            // Add parallax scroll effect to hero section
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+            
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.scrollY;
+                
+                if (scrollPosition < window.innerHeight) {
+                    // Parallax effect for hero content
+                    heroContent.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+                    hero.style.opacity = 1 - (scrollPosition / (window.innerHeight * 0.6));
+                }
+                
+                // Animate header on scroll
+                const header = document.querySelector('header');
+                if (scrollPosition > 100) {
+                    header.style.backgroundColor = 'rgba(248, 244, 227, 0.98)';
+                    header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+                } else {
+                    header.style.backgroundColor = 'var(--ivy-cream)';
+                    header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.05)';
+                }
+            });
+            
+            // Add smooth transition between sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Add interactive hover effects to buttons
+            const buttons = document.querySelectorAll('button, .cta-button, .secondary-button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transition = 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                });
+            });
+            
+            // Create a typing effect for the hero subtitle
+            const heroSubtitle = document.querySelector('.hero p');
+            if (heroSubtitle) {
+                const text = heroSubtitle.textContent;
+                heroSubtitle.textContent = '';
+                
+                setTimeout(() => {
+                    let i = 0;
+                    const typeEffect = setInterval(() => {
+                        if (i < text.length) {
+                            heroSubtitle.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeEffect);
+                        }
+                    }, 20);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
